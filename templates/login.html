@@ -7,11 +7,24 @@
 	<body>
         <div class="container">
 		<h1>Login</h1>
-			<form action="/login" method="post">
-				{{ form.email_label }}
-				{{ form.email(size=30) }}
-				{{ form.password_label }}
-				{{ form.password(size=30) }}
+			<form action="/login" method="post" novalidate>
+				<p>
+					{{ form.email_label }}
+					<br>
+					{{ form.email(size=30) }}
+					{% for err in form.email.errors %}
+						<span style="color:red">{{ err }}</span>
+					{% endfor %}
+				</p>
+
+				<p>
+					{{ form.password_label }}
+					<br>
+					{{ form.password(size=30) }}
+					{% for err in form.password.errors %}
+						<span style="color:red">{{ err }}</span>
+					{% endfor %}
+				</p>
 				{{ form.csrf_token }}
 				{{ form.button }}
 			</form>
